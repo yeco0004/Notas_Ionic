@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>asignatura</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-content>
+    <ion-item>
+      <ion-label position="floating" >Nombre de la Asignatura</ion-label>
+      <ion-input [(ngModel)]="asignatura.nombre" placeholder="Ej. Matemáticas" required></ion-input>
+    </ion-item>
+    <div *ngIf="asignatura.nombre === ''" style="color: red;">Este campo es obligatorio</div>
+  
+    <ion-item>
+      <ion-label position="floating">Nota 1 (20%)</ion-label>
+      <ion-input type="number" [(ngModel)]="asignatura.notas.nota1" placeholder="0" min="0" max="5" required></ion-input>
+    </ion-item>
+    <div *ngIf="asignatura.notas.nota1 === null " style="color: red;">Este campo es obligatorio</div>
+  
+    <ion-item>
+      <ion-label position="floating">Nota 2 (20%)</ion-label>
+      <ion-input type="number" [(ngModel)]="asignatura.notas.nota2" placeholder="0" min="0" max="5" required></ion-input>
+    </ion-item>
+    <div *ngIf="asignatura.notas.nota2 === null " style="color: red;">Este campo es obligatorio</div>
+  
+    <ion-item>
+      <ion-label position="floating">Nota 3 (20%)</ion-label>
+      <ion-input type="number" [(ngModel)]="asignatura.notas.nota3" placeholder="0" min="0" max="5" required></ion-input>
+    </ion-item>
+    <div *ngIf="asignatura.notas.nota3 === null " style="color: red;">Este campo es obligatorio</div>
+  
+    <ion-item>
+      <ion-label position="floating">Nota 4 (40%)</ion-label>
+      <ion-input type="number" [(ngModel)]="asignatura.notas.nota4" placeholder="0" min="0" max="5" required></ion-input>
+    </ion-item>
+    <div *ngIf="asignatura.notas.nota4 === null " style="color: red;">Este campo es obligatorio</div>
+
+    <ion-list>
+      <ion-item *ngFor="let key of (asignaturas | keyvalue)">
+        <ion-label>
+         <h2>{{ key.key }}</h2>
+         <p>Nota Final: {{ key.value.notaFinal.toFixed(3) }}</p>
+         <ion-button expand="full" (click)="eliminarAsignatura(key.key)" color="danger" slot="end">Eliminar Asignatura</ion-button>
+         <ion-button expand="full" (click)="editarAsignatura(key.key, key.value)" slot="end">Editar Asignatura</ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" (click)="guardarAsignatura()" [disabled]="!formValido()">Guardar Asignatura</ion-button>    
+  </ion-content>
+
+  
+  
+</ion-content>

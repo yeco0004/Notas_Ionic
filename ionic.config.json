@@ -1,0 +1,7 @@
+{
+  "name": "notas-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
